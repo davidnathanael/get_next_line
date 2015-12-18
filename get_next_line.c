@@ -6,7 +6,7 @@
 /*   By: ddela-cr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 22:12:58 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/12/18 00:57:32 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2015/12/18 16:02:15 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ int			get_next_line(int const fd, char **line)
 	while (ret > 0 || ft_strlen(tmp->overflow))
 	{
 		if ((ft_store_line(&(tmp->overflow), line)) == 1)
-			return (1);
+			return (READ);
 		if (ft_append(fd, &(tmp->overflow), &ret) == -1)
-			return (-1);
+			return (ERROR);
 		if (ret == 0 && ft_strlen(tmp->overflow))
 		{
 			*line = ft_strdup(tmp->overflow);
 			ft_bzero(tmp->overflow, ft_strlen(tmp->overflow));
-			return (1);
+			return (READ);
 		}
 	}
 	free(tmp->overflow);
 	tmp->overflow = NULL;
-	return (0);
+	return (END);
 }
 
 int			ft_store_line(char **tmp, char **line)
@@ -61,38 +61,39 @@ int			ft_store_line(char **tmp, char **line)
 	return (0);
 }
 
-int			ft_append(int const fd, char **tmp, int *ret)
+int			ft_append(int const fd, char **overflow, int *ret)
 {
 	char			*buf;
 
 	buf = ft_strnew(BUFF_SIZE);
 	if ((*ret = read(fd, buf, BUFF_SIZE)) == -1)
 		return (-1);
-	if (*tmp == '\0')
-		*tmp = ft_strnew(0);
+	if (*overflow == '\0')
+		*overflow = ft_strnew(0);
 	buf[*ret] = '\0';
-	*tmp = ft_strjoin(*tmp, buf);
+	*overflow = ft_strjoin(*overflow, buf);
 	free(buf);
 	return (0);
 }
 
-void		ft_check_fd(t_list **list, t_list **tmp, int fd)
+void		ft_check_fd(t_list **list, t_list **overflow, int fd)
 {
-	*tmp = *list;
-	while (*tmp)
-	{
-		if ((*tmp)->fd == fd)
-			break ;
-		*tmp = (*tmp)->next;
-	}
-	if (!*tmp)
-	{
-		t_list		*new;
+	t_list		*new;
 
+	*overflow = *list;
+	while (*overflow)
+	{
+		if ((*overflow)->fd == fd)
+			break ;
+		*overflow = (*overflow)->next;
+	}
+	if (!*overflow)
+	{
 		new = (t_list *)malloc(sizeof(t_list));
 		new->fd = fd;
+		new->overflow = ft_strnew(0);
 		new->next = *list;
 		*list = new;
-		*tmp = *list;
+		*overflow = *list;
 	}
 }

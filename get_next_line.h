@@ -6,14 +6,17 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 22:13:20 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/12/18 00:57:33 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2015/12/18 15:16:48 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 17
+# define READ 1
+# define END 0
+# define ERROR -1
 
 typedef struct		s_list
 {

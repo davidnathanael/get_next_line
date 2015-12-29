@@ -6,7 +6,7 @@
 /*   By: ddela-cr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 22:12:58 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/12/18 16:02:15 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2015/12/29 12:52:32 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int			get_next_line(int const fd, char **line)
 	return (END);
 }
 
-int			ft_store_line(char **tmp, char **line)
+int			ft_store_line(char **overflow, char **line)
 {
 	char			*str;
 
-	if ((str = ft_strchr(*tmp, '\n')))
+	if ((str = ft_strchr(*overflow, '\n')))
 	{
 		*str = '\0';
-		*line = ft_strdup(*tmp);
-		ft_memmove(*tmp, str + 1, ft_strlen(str + 1) + 1);
+		*line = ft_strdup(*overflow);
+		ft_memmove(*overflow, str + 1, ft_strlen(str + 1) + 1);
 		return (1);
 	}
 	return (0);

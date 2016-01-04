@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 17:17:31 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/11/30 16:04:50 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:56:10 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*str;
-	int		i;
+	char		*str;
+	size_t		i;
 
 	str = b;
 	i = 0;

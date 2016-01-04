@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 22:12:58 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/01/04 16:40:31 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:52:06 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/uio.h>
-#include "libft/libft.h"
+#include "libft.h"
 #include "get_next_line.h"
 
 int			get_next_line(int const fd, char **line)

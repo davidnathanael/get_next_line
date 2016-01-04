@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 20:27:54 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/11/30 16:04:52 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:48:04 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int			i;
+	size_t		i;
 	char		*dest;
 	const char	*source;
 

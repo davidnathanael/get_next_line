@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 13:14:36 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/12/17 01:09:15 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/01/04 17:48:17 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 char	*ft_strnew(size_t size)
 {
 	char	*str;
-	size_t	i;
 
 	str = (char *)malloc(sizeof(char) * size + 1);
 	if (!str)

@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 22:12:58 by ddela-cr          #+#    #+#             */
-/*   Updated: 2015/12/29 12:56:44 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/01/04 16:40:31 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,6 @@ int			get_next_line(int const fd, char **line)
 	return (END);
 }
 
-int			ft_store_line(char **overflow, char **line)
-{
-	char			*str;
-
-	if ((str = ft_strchr(*overflow, '\n')))
-	{
-		*str = '\0';
-		*line = ft_strdup(*overflow);
-		ft_memmove(*overflow, str + 1, ft_strlen(str + 1) + 1);
-		return (1);
-	}
-	return (0);
-}
-
-int			ft_append(int const fd, char **overflow, int *ret)
-{
-	char			*buf;
-
-	buf = ft_strnew(BUFF_SIZE);
-	if ((*ret = read(fd, buf, BUFF_SIZE)) == -1)
-		return (-1);
-	if (*overflow == '\0')
-		*overflow = ft_strnew(0);
-	buf[*ret] = '\0';
-	*overflow = ft_strjoin(*overflow, buf);
-	free(buf);
-	return (0);
-}
-
 void		ft_check_fd(t_list **list, t_list **overflow, int fd)
 {
 	t_list		*new;
@@ -96,4 +67,33 @@ void		ft_check_fd(t_list **list, t_list **overflow, int fd)
 		*list = new;
 		*overflow = *list;
 	}
+}
+
+int			ft_store_line(char **overflow, char **line)
+{
+	char			*str;
+
+	if ((str = ft_strchr(*overflow, '\n')))
+	{
+		*str = '\0';
+		*line = ft_strdup(*overflow);
+		ft_memmove(*overflow, str + 1, ft_strlen(str + 1) + 1);
+		return (1);
+	}
+	return (0);
+}
+
+int			ft_append(int const fd, char **overflow, int *ret)
+{
+	char			*buf;
+
+	buf = ft_strnew(BUFF_SIZE);
+	if ((*ret = read(fd, buf, BUFF_SIZE)) == -1)
+		return (ERROR);
+	if (*overflow == '\0')
+		*overflow = ft_strnew(0);
+	buf[*ret] = '\0';
+	*overflow = ft_strjoin(*overflow, buf);
+	free(buf);
+	return (0);
 }

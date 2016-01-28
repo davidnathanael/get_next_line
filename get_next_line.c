@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 22:12:58 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/01/04 17:52:06 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/01/28 06:52:42 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,18 @@ int			ft_store_line(char **overflow, char **line)
 int			ft_append(int const fd, char **overflow, int *ret)
 {
 	char			*buf;
+	char			*tmp;
 
 	buf = ft_strnew(BUFF_SIZE);
+	tmp = NULL;
 	if ((*ret = read(fd, buf, BUFF_SIZE)) == -1)
 		return (ERROR);
 	if (*overflow == '\0')
 		*overflow = ft_strnew(0);
 	buf[*ret] = '\0';
+	tmp = *overflow;
 	*overflow = ft_strjoin(*overflow, buf);
+	free(tmp);
 	free(buf);
 	return (0);
 }
